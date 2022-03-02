@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pHCurrentReading">
+
+    <TextView
+        android:id="@+id/pHtextView"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginEnd="124dp"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        app:layout_constraintBaseline_toBaselineOf="@+id/readpHbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/readpHbutton" />
+
+    <Button
+        android:id="@+id/readpHbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="119dp"
+        android:gravity="center"
+        android:text="read pH"
+        app:layout_constraintBottom_toTopOf="@+id/informationTextView"
+        app:layout_constraintEnd_toStartOf="@+id/pHtextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mytoolbar" />
+
+    <TextView
+        android:id="@+id/informationTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="43dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/pHTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readpHbutton" />
+
+    <TextView
+        android:id="@+id/pHTextView"
+        android:layout_width="215dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="150dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/informationTextView" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mytoolbar"
+        android:layout_width="406dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="98dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/readpHbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

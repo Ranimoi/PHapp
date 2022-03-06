@@ -31,6 +31,7 @@ public class pHreading extends AppCompatActivity {
         agriculturebutton.setOnClickListener(onClickagriculturebutton);
         otherbutton.setOnClickListener(onClickotherbutton);
 
+
         //enable the up button
         Toolbar myToolbar = (Toolbar) findViewById(R.id.mytoolbar1);
         setSupportActionBar(myToolbar);

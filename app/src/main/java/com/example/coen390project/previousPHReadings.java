@@ -1,34 +1,32 @@
 package com.example.coen390project;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PHHistoryActivity extends AppCompatActivity {
+public class previousPHReadings extends AppCompatActivity {
     protected ListView pHListView;
     protected TextView numberOfMeasurements;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.ph_history_activity);
 
-        pHListView = findViewById(R.id.pHListView);
-        numberOfMeasurements = (TextView) findViewById(R.id.numberOfMeasurements);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_previous_phreadings);
+        pHListView = findViewById(R.id.ListViewPH);
+        numberOfMeasurements = (TextView) findViewById(R.id.NumberReadingstextView);
 
 
 
         //enable the up button
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.previousPHtoolbar);
         setSupportActionBar(myToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -41,14 +39,9 @@ public class PHHistoryActivity extends AppCompatActivity {
         loadListView();
 
 
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setContentView(R.layout.ph_history_activity);
-        loadListView();
-    }
 
     protected void loadListView() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -65,13 +58,10 @@ public class PHHistoryActivity extends AppCompatActivity {
             pHListText.add(temp);
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pHListText);
-        pHListView = findViewById(R.id.pHListView);
+        //pHListView = findViewById(R.id.pHListView);
         pHListView.setAdapter(arrayAdapter);
     }
 
-        @Override
-        protected void onDestroy() {
-        super.onDestroy();
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-    }
+
+
 }

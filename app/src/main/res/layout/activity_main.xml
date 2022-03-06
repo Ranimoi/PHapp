@@ -6,39 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/currentpHbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
+        android:layout_width="218dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="87dp"
+        android:gravity="center"
         android:text="current pH"
+        app:layout_constraintBottom_toTopOf="@+id/previouspHButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AccessTimetextView" />
+
+    <Button
+        android:id="@+id/previouspHButton"
+        android:layout_width="211dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="70dp"
+        android:gravity="center"
+        android:text="previous pH"
+        app:layout_constraintBottom_toTopOf="@+id/settingsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentpHbutton" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="217dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="124dp"
+        android:gravity="center"
+        android:text="Settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/previouspHButton" />
 
-    <Button
-        android:id="@+id/dataBaseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="55dp"
-        android:text="Access Logs"
+    <TextView
+        android:id="@+id/AccessTimetextView"
+        android:layout_width="195dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="70dp"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/currentpHbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/welcometextView" />
+
+    <TextView
+        android:id="@+id/welcometextView"
+        android:layout_width="244dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="81dp"
+        android:layout_marginBottom="74dp"
+        android:gravity="center"
+        android:text="Welcome to the pH app"
+        app:layout_constraintBottom_toTopOf="@+id/AccessTimetextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

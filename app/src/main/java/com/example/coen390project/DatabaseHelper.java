@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     List<PH> pHValues = new ArrayList<>();
                     Log.d(TAG,"Column" +cursor.getColumnIndex(Config.COLUMN_PH_READING));
                     do {
-                        Integer value = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_PH_READING));
+                        Float value = cursor.getFloat(cursor.getColumnIndex(Config.COLUMN_PH_READING));
                         String date = cursor.getString(cursor.getColumnIndex(Config.COLUMN_MEASUREMENT_DATE));
 
                         pHValues.add(new PH(value, date));

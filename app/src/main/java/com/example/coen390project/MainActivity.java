@@ -16,7 +16,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     protected Button currentpHbutton;
-    protected Button dataBaseButton;
+    protected TextView AccessTimetextView;
+    protected TextView welcometextView;
+    protected Button previouspHButton;
+    protected Button settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,31 +28,57 @@ public class MainActivity extends AppCompatActivity {
 
         //link the id to the UI
         currentpHbutton = findViewById(R.id.currentpHbutton);
-        dataBaseButton = findViewById(R.id.dataBaseButton);
-
-        currentpHbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startcurrentpHActivity();
-            }
-        });
-
-        dataBaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PHHistoryActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        currentpHbutton.setOnClickListener(onClickcurrentpHbutton);
+        previouspHButton = findViewById(R.id.previouspHButton);
+        settingsButton = findViewById(R.id.settingsButton);
+        currentpHbutton.setOnClickListener(onClickcurrentpHbutton);
+        previouspHButton.setOnClickListener(onClickpreviouspHButton);
+        settingsButton.setOnClickListener(onClicksettingsButton);
     }
+
+    //button on click to start reading the pH
+    private Button.OnClickListener onClickcurrentpHbutton= new Button.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startcurrentpHActivity();
+        }
+
+    };
     private void startcurrentpHActivity()
     {
         //takes you to the SettingsActivity
         Intent intent = new Intent (this, pHreading.class);// create an intent to move from one activity to the other (current activity, next one)
         startActivity(intent);
     }
+    //button on click to view the previous pH
+    private Button.OnClickListener onClickpreviouspHButton= new Button.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startpreviouspHActivity();
+        }
+
+    };
+    private void startpreviouspHActivity()
+    {
+        //takes you to the SettingsActivity
+        Intent intent = new Intent (this, previousPHReadings.class);// create an intent to move from one activity to the other (current activity, next one)
+        startActivity(intent);
+    }
+    //button to go to the settings activity
+    private Button.OnClickListener onClicksettingsButton= new Button.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startsettingsActivity();
+        }
+
+    };
+    private void startsettingsActivity()
+    {
+        //takes you to the SettingsActivity
+        Intent intent = new Intent (this, SettingsActivity.class);// create an intent to move from one activity to the other (current activity, next one)
+        startActivity(intent);
+    }
 
 
-    //Change
+
 }

@@ -10,17 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".previousPHReadings"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".pHreading"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PHHistoryActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".pHCurrentReading"
             android:exported="false"
-            android:parentActivityName=".pHreading"/>
+            android:parentActivityName=".pHreading" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,4 +40,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

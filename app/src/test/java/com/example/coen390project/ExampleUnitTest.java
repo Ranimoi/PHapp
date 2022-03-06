@@ -1,4 +1,4 @@
-package com.example.phapplication;
+package com.example.coen390project;
 
 import org.junit.Test;
 

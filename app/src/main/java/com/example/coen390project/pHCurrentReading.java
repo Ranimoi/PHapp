@@ -1,27 +1,28 @@
-package com.example.phapplication;
+package com.example.coen390project;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Context;
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 
-import android.animation.ObjectAnimator;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import Database.DatabaseHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
 
 public class pHCurrentReading extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class pHCurrentReading extends AppCompatActivity {
     protected Button readpHbutton;
     protected TextView informationTextView;
     protected TextView pHTextView;
+    protected EditText testPHEditText;
+    protected EditText testDateEditText;
     //list to store the values of the
     List<Integer> list = new ArrayList<Integer>();
 
@@ -78,14 +81,28 @@ public class pHCurrentReading extends AppCompatActivity {
         return list;
     }
 
-    //button on click to start reading the pH
+    //button on click to start reading the pH. Stores the value in the database
+    //changes made by Keeano here for button
+    //checking for changes
+    //checking again for changes
     private Button.OnClickListener onClickreadpHbutton = new Button.OnClickListener() {
         @Override
-        public void onClick(View view) {
-            displaypH(list);
+        public void onClick(View view){
+        String creation_date = testDateEditText.getText().toString(); // Input for the data
+        Integer ph_value;
+        try {
+            ph_value = Integer.parseInt(testPHEditText.getText().toString());
+        }
+                catch (Exception e)
+        {
+            return;
         }
 
+       // String date = sdf.format(new Date());
 
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+               // if(!(creation_date.equals("") || ph_value.equals("") || ph_value < 0))
+            dbHelper.insertpH(new PH(ph_value,creation_date));
     };
 
 

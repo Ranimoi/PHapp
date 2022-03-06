@@ -1,19 +1,20 @@
-package com.example.phapplication;
+package com.example.coen390project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
     protected Button currentpHbutton;
 
     @Override
@@ -31,13 +32,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-        private void startcurrentpHActivity()
-        {
-            //takes you to the SettingsActivity
-            Intent intent = new Intent (this, pHreading.class);// create an intent to move from one activity to the other (current activity, next one)
-            startActivity(intent);
-        }
+    private void startcurrentpHActivity()
+    {
+        //takes you to the SettingsActivity
+        Intent intent = new Intent (this, pHreading.class);// create an intent to move from one activity to the other (current activity, next one)
+        startActivity(intent);
+    }
 
-
-
+    //Change
 }

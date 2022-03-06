@@ -72,12 +72,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 if(cursor.moveToFirst())
                 {
                     List<PH> pHValues = new ArrayList<>();
-                    Log.d(TAG,"Column" +cursor.getColumnIndex(Config.COLUMN_MEASUREMENT_DATE));
+                    Log.d(TAG,"Column" +cursor.getColumnIndex(Config.COLUMN_PH_READING));
                     do {
-                        int value = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_PH_READING));
+                        Integer value = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_PH_READING));
                         String date = cursor.getString(cursor.getColumnIndex(Config.COLUMN_MEASUREMENT_DATE));
 
-                        pHValues.add(new PH(value,date));
+                        pHValues.add(new PH(value, date));
 
                     }while (cursor.moveToNext());
                     return pHValues;
@@ -98,6 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return Collections.emptyList();
 
     }
+
 
 
 }

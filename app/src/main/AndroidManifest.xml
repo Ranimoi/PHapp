@@ -14,6 +14,10 @@
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
         <activity
+            android:name=".PHHistoryActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".pHCurrentReading"
             android:exported="false"
             android:parentActivityName=".pHreading"/>
@@ -27,5 +31,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -43,26 +43,35 @@ public class pHCurrentReading extends AppCompatActivity {
         readpHbutton = (Button) findViewById(R.id.readpHbutton);
         informationTextView= (TextView) findViewById(R.id.informationTextView);
         pHTextView = (TextView) findViewById(R.id.pHTextView) ;
-        testDateEditText = (EditText) findViewById(R.id.testDateEditText);
-        testPHEditText = (EditText) findViewById(R.id.testPHEditText);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
 
         readpHbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String creation_date = testDateEditText.getText().toString(); // Input for the data
                 Integer ph_value;
                 try {
-                    ph_value = Integer.parseInt(testPHEditText.getText().toString());
-                } catch (Exception e) {
+                    int leftLimit = 1;
+                    int rightLimit = 10;
+                    ph_value = leftLimit + (int) (new Random().nextFloat() * (rightLimit - leftLimit));
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(pHCurrentReading.this, "Operation Failed, missing or empty pH value" ,Toast.LENGTH_LONG).show();
                     return;
                 }
-                // String date = sdf.format(new Date());
+
+                String date = sdf.format(new Date());
+
                 DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
-                 if(!(creation_date.equals("") || ph_value.equals("") || ph_value < 0))
-                dbHelper.insertpH(new PH(ph_value, creation_date));
+                 if(!(ph_value < 0 || ph_value >14))
+                    dbHelper.insertpH(new PH(ph_value));
+                 else
+                 {
+                     Toast.makeText(pHCurrentReading.this, "Operation Failed, pH value is not within range" ,Toast.LENGTH_LONG).show();
+                 }
             }
         });
-
-
 
            //enable the up button
             Toolbar myToolbar = (Toolbar) findViewById(R.id.mytoolbar);
@@ -82,24 +91,8 @@ public class pHCurrentReading extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        generateRandomPH();
+
     }
-
-
-    protected List<Integer> generateRandomPH() {
-
-        int min = 5, max = 7;
-        Random rnd = new Random();
-        for (int i = 0; i < 10; i++) {
-            list.add(rnd.nextInt((max - min + 1) + min));
-        }
-
-        return list;
-    }
-
-    //button on click to start reading the pH. Stores the value in the database
-    //changes made by Keeano here for button
-
 
 
         protected void displaypH(List<Integer> list) {

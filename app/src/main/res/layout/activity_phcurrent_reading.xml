@@ -67,35 +67,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/testPHEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="17dp"
-        android:ems="10"
-        android:hint="Input Test pH"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/testDateEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pHTextView" />
-
-    <EditText
-        android:id="@+id/testDateEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Input Test Date"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testPHEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

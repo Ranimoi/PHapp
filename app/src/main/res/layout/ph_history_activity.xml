@@ -10,7 +10,31 @@
         android:layout_width="348dp"
         android:layout_height="471dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="133dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/phHistoryToolbar"
+        android:layout_width="397dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="1dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <TextView
+        android:id="@+id/numberOfMeasurements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="89dp"
+        android:text="TextView" />
+
 </RelativeLayout>

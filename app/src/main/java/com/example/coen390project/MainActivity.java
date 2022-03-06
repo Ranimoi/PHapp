@@ -16,6 +16,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     protected Button currentpHbutton;
+    protected Button dataBaseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +25,21 @@ public class MainActivity extends AppCompatActivity {
 
         //link the id to the UI
         currentpHbutton = findViewById(R.id.currentpHbutton);
+        dataBaseButton = findViewById(R.id.dataBaseButton);
 
         currentpHbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startcurrentpHActivity();
+            }
+        });
+
+        dataBaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PHHistoryActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -38,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent (this, pHreading.class);// create an intent to move from one activity to the other (current activity, next one)
         startActivity(intent);
     }
+
 
     //Change
 }

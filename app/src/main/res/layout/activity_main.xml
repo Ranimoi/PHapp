@@ -8,22 +8,21 @@
 
     <Button
         android:id="@+id/currentpHbutton"
-        android:layout_width="218dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="87dp"
+        android:layout_width="224dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
         android:gravity="center"
         android:text="current pH"
         app:layout_constraintBottom_toTopOf="@+id/previouspHButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AccessTimetextView" />
 
     <Button
         android:id="@+id/previouspHButton"
-        android:layout_width="211dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="70dp"
+        android:layout_width="217dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="27dp"
         android:gravity="center"
         android:text="previous pH"
         app:layout_constraintBottom_toTopOf="@+id/settingsButton"
@@ -33,8 +32,8 @@
 
     <Button
         android:id="@+id/settingsButton"
-        android:layout_width="217dp"
-        android:layout_height="62dp"
+        android:layout_width="219dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="124dp"
         android:gravity="center"
         android:text="Settings"
@@ -45,9 +44,9 @@
 
     <TextView
         android:id="@+id/AccessTimetextView"
-        android:layout_width="195dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="70dp"
+        android:layout_width="335dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="40dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/currentpHbutton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +55,15 @@
 
     <TextView
         android:id="@+id/welcometextView"
-        android:layout_width="244dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginBottom="74dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="81dp"
         android:gravity="center"
         android:text="Welcome to the pH app"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/AccessTimetextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

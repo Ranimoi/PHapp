@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_TABLE_PROFILE = "CREATE TABLE " + Config.PH_TABLE_NAME +
-                "(" + Config.COLUMN_PH_READING + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                "(" + Config.COLUMN_PH_READING + " FLOAT,"
                 + Config.COLUMN_MEASUREMENT_DATE + " TEXT NOT NULL)";
         Log.d(TAG, CREATE_TABLE_PROFILE);
 
@@ -98,7 +98,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return Collections.emptyList();
 
     }
+    public String getLastReadingDate()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try
+        {
 
+            cursor = db.query(Config.PH_TABLE_NAME, null, null,null,null, null, null);
+            if(cursor != null)
+            {
+                if(cursor.moveToLast())
+                {
+                    String pHDate;
+                    Log.d(TAG,"Column" +cursor.getColumnIndex(Config.COLUMN_PH_READING));
+                    do {
+                        String date = cursor.getString(cursor.getColumnIndex(Config.COLUMN_MEASUREMENT_DATE));
+                        pHDate = date;
+
+                    }while (cursor.moveToNext());
+                    return pHDate;
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            Log.d(TAG,"EXCEPTION: " + e);
+            Toast.makeText(context, "Operation Failed!: " + e, Toast.LENGTH_LONG).show();
+        }
+        finally {
+            if(cursor != null)
+                cursor.close();
+
+            db.close();
+        }
+        return null;
+
+    }
 
 
 }

@@ -1,7 +1,9 @@
 package com.example.coen390project;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class PH {
     private String MEASUREMENT_DATE;
@@ -14,9 +16,15 @@ public class PH {
 
     public PH(Float PH_VALUE){
         this.PH_VALUE = PH_VALUE;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd @ HH:mm:ss");
-        String MEASUREMENT_DATE = sdf.format(new Date());
-        setMEASUREMENT_DATE(MEASUREMENT_DATE);
+
+        //get the timestamp to store it in the table
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy.MM.dd '@' HH:mm:ss");
+        simpleDate.setTimeZone(TimeZone.getTimeZone("EST"));
+        String dateTime = (simpleDate.format(calendar.getTime()).toString());
+        setMEASUREMENT_DATE(dateTime);
+
     }
 
 

@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +37,21 @@ public class MainActivity extends AppCompatActivity {
         currentpHbutton.setOnClickListener(onClickcurrentpHbutton);
         previouspHButton.setOnClickListener(onClickpreviouspHButton);
         settingsButton.setOnClickListener(onClicksettingsButton);
+        AccessTimetextView= findViewById(R.id.AccessTimetextView);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();;
+       // get the latest reading ph date
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        String DatePH= (dbHelper.getLastReadingDate()).toString();
+        if(DatePH != null) {
+            AccessTimetextView.setText("Last pH reading done: "+  DatePH);
+        }
+        else
+        {
+            AccessTimetextView.setText("No pH reading done yet");
+        }
     }
 
     //button on click to start reading the pH

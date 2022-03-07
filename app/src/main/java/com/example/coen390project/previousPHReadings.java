@@ -47,7 +47,7 @@ public class previousPHReadings extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         List<PH> pHValues = dbHelper.getAllValues();
 
-        numberOfMeasurements.setText(pHValues.size() + " Measurements");
+        numberOfMeasurements.setText(pHValues.size() + " Measurement");
 
         ArrayList<String> pHListText = new ArrayList<>();
 

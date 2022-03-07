@@ -13,10 +13,33 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="265dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/datePickerbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/datePickerbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="91dp"
+        android:text="Date Picker"
+        app:layout_constraintBottom_toTopOf="@+id/DatetextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Settingstoolbar" />
+
+    <TextView
+        android:id="@+id/DatetextView"
+        android:layout_width="226dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="233dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerbutton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

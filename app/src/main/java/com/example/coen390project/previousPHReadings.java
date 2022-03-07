@@ -53,7 +53,7 @@ public class previousPHReadings extends AppCompatActivity {
 
         for (int i = 0; i < pHValues.size(); i++) {
             String temp = "";
-            temp += pHValues.get(i).getPH_VALUE() + ", " + pHValues.get(i).getMEASUREMENT_DATE();
+            temp += "pH Value: "  + pHValues.get(i).getPH_VALUE() + ", " + pHValues.get(i).getMEASUREMENT_DATE();
 
             pHListText.add(temp);
         }

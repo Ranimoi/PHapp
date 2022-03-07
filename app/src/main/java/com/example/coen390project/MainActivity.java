@@ -41,17 +41,21 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onStart() {
-        super.onStart();;
-       // get the latest reading ph date
+        super.onStart();
+        ;
+        // get the latest reading ph date
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        String DatePH= (dbHelper.getLastReadingDate()).toString();
-        if(DatePH != null) {
-            AccessTimetextView.setText("Last pH reading done: "+  DatePH);
+        String DatePH = "";
+        if (dbHelper.getLastReadingDate() != null){
+            DatePH = (dbHelper.getLastReadingDate()).toString();
         }
-        else
-        {
+
+        if (DatePH != null) {
+            AccessTimetextView.setText("Last pH reading done: " + DatePH);
+        } else {
             AccessTimetextView.setText("No pH reading done yet");
         }
+
     }
 
     //button on click to start reading the pH

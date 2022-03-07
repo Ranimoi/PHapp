@@ -77,8 +77,6 @@ public class pHCurrentReading extends AppCompatActivity {
         public void onClick(View view) {
             displaypH(list);
         }
-
-
     };
 
     private Button.OnClickListener onClicksavebutton = new View.OnClickListener() {

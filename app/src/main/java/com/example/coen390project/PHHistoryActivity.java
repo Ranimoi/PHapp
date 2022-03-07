@@ -61,7 +61,6 @@ public class PHHistoryActivity extends AppCompatActivity {
         for (int i = 0; i < pHValues.size(); i++) {
             String temp = "";
             temp += pHValues.get(i).getPH_VALUE() + ", " + pHValues.get(i).getMEASUREMENT_DATE();
-
             pHListText.add(temp);
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pHListText);

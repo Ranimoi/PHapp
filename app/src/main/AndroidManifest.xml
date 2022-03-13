@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".previousPHReadings"
-            android:parentActivityName=".MainActivity"
+            android:name=".Settings"
             android:exported="false" />
+        <activity
+            android:name=".previousPHReadings"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".pHreading"
             android:exported="false"
@@ -28,8 +31,8 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

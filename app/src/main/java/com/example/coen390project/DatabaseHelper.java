@@ -31,7 +31,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, CREATE_TABLE_PROFILE);
 
         sqLiteDatabase.execSQL(CREATE_TABLE_PROFILE);
+
+        //create another table for the date range
+        String CREATE_TABLE_DATE_RANGE = "CREATE TABLE " + Config.TABLE_RANGE_DATE+
+                "("  + Config.COLUMN_START_DATE+ " TEXT NOT NULL,"
+                + Config.COLUMN_END_DATE+ " TEXT NOT NULL)";
+        Log.d(TAG, CREATE_TABLE_DATE_RANGE);
+
+        sqLiteDatabase.execSQL(CREATE_TABLE_DATE_RANGE);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
@@ -60,6 +69,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
         return tableID;
+    }
+
+    public long insertDateRange(DateRange Date)
+    {
+        long tableID = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(Config.COLUMN_START_DATE, Date.getStartDate());
+        contentValues.put(Config.COLUMN_END_DATE, Date.getEndDate());
+
+        try
+        {
+            tableID = db.insertOrThrow(Config.TABLE_RANGE_DATE, null, contentValues);
+        }
+        catch (SQLException e)
+        {
+            Log.d(TAG,"EXCEPTION: " + e);
+            Toast.makeText(context, "Operation Failed!: " + e, Toast.LENGTH_LONG).show();
+        }
+        finally {
+            db.close();
+        }
+        return tableID;
+    }
+
+    //get the last two dates in the list
+
+    public List<DateRange> getDateRange()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try
+        {
+            cursor = db.query(Config.TABLE_RANGE_DATE, null, null,null,null, null, null);
+            if(cursor != null)
+            {
+                if(cursor.moveToLast())
+                {
+                    List<DateRange> dateRange = new ArrayList<>();
+                    do {
+                        String startDate = cursor.getString(cursor.getColumnIndex(Config.COLUMN_START_DATE));
+                        String endDate = cursor.getString(cursor.getColumnIndex(Config.COLUMN_END_DATE));
+
+                        dateRange.add(new DateRange(startDate, endDate));
+
+                    }while (cursor.moveToNext());
+                    return dateRange;
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            Log.d(TAG,"EXCEPTION: " + e);
+            Toast.makeText(context, "Operation Failed!: " + e, Toast.LENGTH_LONG).show();
+        }
+        finally {
+            if(cursor != null)
+                cursor.close();
+
+            db.close();
+        }
+        return Collections.emptyList();
+
     }
 
     public List<PH> getAllValues()

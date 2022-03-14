@@ -75,7 +75,7 @@ public class pHCurrentReading extends AppCompatActivity {
     private Button.OnClickListener onClickreadpHbutton = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            displaypH(list);
+            saveButton.setEnabled(true); displaypH(list);
         }
     };
 
@@ -98,12 +98,17 @@ public class pHCurrentReading extends AppCompatActivity {
             String date = sdf.format(new Date());
 
             DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
-            if(!(ph_value < 0 || ph_value >14))
+            if(!(ph_value < 0 || ph_value >14)) {
                 dbHelper.insertpH(new PH(ph_value));
+                //toast successful save output a toast message
+                Toast.makeText(pHCurrentReading.this, "pH saved", Toast.LENGTH_SHORT).show();
+                saveButton.setEnabled(false);
+            }
             else
             {
                 Toast.makeText(pHCurrentReading.this, "Operation Failed, pH value is not within range" ,Toast.LENGTH_LONG).show();
             }
+
         }
     };
 

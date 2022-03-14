@@ -6,17 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
+    <Button
+        android:id="@+id/endDatebutton"
+        android:layout_width="193dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:text="End Date"
+        app:layout_constraintBottom_toTopOf="@+id/endDatetextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startDatetextView" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Settingstoolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="79dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/startDatebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startDatebutton"
+        android:layout_width="206dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:text="Start Date"
+        app:layout_constraintBottom_toTopOf="@+id/startDatetextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Settingstoolbar" />
+
+    <TextView
+        android:id="@+id/startDatetextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/endDatebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startDatebutton" />
+
+    <TextView
+        android:id="@+id/endDatetextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="33dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/savebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endDatebutton" />
+
+    <Button
+        android:id="@+id/savebutton"
+        android:layout_width="164dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="52dp"
+        android:gravity="center"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endDatetextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,21 +3,30 @@ package com.example.coen390project;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+//import com.jjoe64.graphview.GraphView;
+//import com.jjoe64.graphview.series.DataPoint;
+//import com.jjoe64.graphview.series.LineGraphSeries;
+
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class previousPHReadings extends AppCompatActivity {
     protected ListView pHListView;
     protected TextView numberOfMeasurements;
+    //protected GraphView phGraphView;
+
     private static final String TAG = "previousPHReadings";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,6 +34,7 @@ public class previousPHReadings extends AppCompatActivity {
         setContentView(R.layout.activity_previous_phreadings);
         pHListView = findViewById(R.id.ListViewPH);
         numberOfMeasurements = (TextView) findViewById(R.id.NumberReadingstextView);
+        //phGraphView = findViewById(R.id.phGraphView);
 
 
 
@@ -39,15 +49,75 @@ public class previousPHReadings extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle("previous pH");
 
-        loadListView();
-
-
-
     }
+    //show the toolbar with the settings dots
+    //default if the button is click then we will have menu_settings_2 showing
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mymenu, menu);
+        return true;
+    }
     //the listview loaded should match the dates chosen in the settings page!!
     //get the date range compare them with the measurement dates!
     //they should be greater or equal than the start date and smaller or equal than the end date
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        //get the courses from the database
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        //hold an array list string of all the profiles that we want to display
+        ArrayList<String> profileListText = new ArrayList<>();
+        int j = 1;
+
+        switch (item.getItemId()) {
+            case R.id.list_button:
+
+                loadListView();
+
+                return true;
+
+
+
+
+        case R.id.graph_button:
+
+
+            //loadGraphView();
+            return true;
+
+
+
+        default:
+        // If we got here, the user's action was not recognized.
+        // Invoke the superclass to handle it.
+        return super.onOptionsItemSelected(item);
+
+
+    }
+}
+
+
+
+//    protected void loadGraphView(){
+//        DatabaseHelper dbHelper = new DatabaseHelper(this);
+//        List<PH> pHValues = dbHelper.getAllValues();
+//        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
+//                new DataPoint(0,1),
+//                new DataPoint(1,3)
+////            for (int i = 0; i < pHValues.size(); i++)
+////            {
+////                String[] date = pHValues.get(i).getMEASUREMENT_DATE().split("[.,@\\s]");
+////                int datayear = Integer.parseInt(date[0]);
+////                int datamonth = Integer.parseInt(date[1]);
+////                int dataday = Integer.parseInt(date[2]);
+////                new DataPoint(pHValues.get(i).getPH_VALUE(),datayear);
+////            }
+//        });
+//    }
 
     protected void loadListView() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);

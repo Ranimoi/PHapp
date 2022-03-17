@@ -104,7 +104,23 @@ public class previousPHReadings extends AppCompatActivity {
             pHListView.setAdapter(arrayAdapter);
         }
         //else if no setting time range is selected output them all
+        else
+        {
+            List<PH> pHValues = dbHelper.getAllValues();
+            ArrayList<String> pHListText = new ArrayList<>();
 
+            for (int i = 0; i < pHValues.size(); i++) {
+                String temp = "";
+                temp += "pH Value: " + pHValues.get(i).getPH_VALUE() + ", Reading Performed on " + pHValues.get(i).getMEASUREMENT_DATE();
+                pHListText.add(temp);
+            }
+            numberOfMeasurements.setText(pHValues.size() + " Measurement");
+            ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pHListText);
+            //pHListView = findViewById(R.id.pHListView);
+            pHListView.setAdapter(arrayAdapter);
+
+
+        }
 
     }
 

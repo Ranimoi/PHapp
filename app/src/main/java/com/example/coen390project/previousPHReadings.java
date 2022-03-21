@@ -8,13 +8,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-//import com.jjoe64.graphview.GraphView;
-//import com.jjoe64.graphview.series.DataPoint;
-//import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.List;
 public class previousPHReadings extends AppCompatActivity {
     protected ListView pHListView;
     protected TextView numberOfMeasurements;
-    //protected GraphView phGraphView;
+    protected GraphView phGraphView;
 
     private static final String TAG = "previousPHReadings";
 
@@ -34,7 +35,10 @@ public class previousPHReadings extends AppCompatActivity {
         setContentView(R.layout.activity_previous_phreadings);
         pHListView = findViewById(R.id.ListViewPH);
         numberOfMeasurements = (TextView) findViewById(R.id.NumberReadingstextView);
-        //phGraphView = findViewById(R.id.phGraphView);
+        phGraphView = findViewById(R.id.phGraphView);
+        pHListView.setVisibility(View.VISIBLE);
+        phGraphView.setVisibility(View.INVISIBLE);
+        loadListView();
 
 
 
@@ -75,18 +79,19 @@ public class previousPHReadings extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.list_button:
-
+                phGraphView.setVisibility(View.INVISIBLE);
+                pHListView.setVisibility(View.VISIBLE);
                 loadListView();
-
                 return true;
 
 
 
 
         case R.id.graph_button:
-
-
-            //loadGraphView();
+            pHListView.setVisibility(View.INVISIBLE);
+            numberOfMeasurements.setVisibility(View.INVISIBLE);
+            phGraphView.setVisibility(View.VISIBLE);
+            loadGraphView();
             return true;
 
 
@@ -96,28 +101,26 @@ public class previousPHReadings extends AppCompatActivity {
         // Invoke the superclass to handle it.
         return super.onOptionsItemSelected(item);
 
-
     }
 }
 
 
-
-//    protected void loadGraphView(){
-//        DatabaseHelper dbHelper = new DatabaseHelper(this);
-//        List<PH> pHValues = dbHelper.getAllValues();
-//        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
-//                new DataPoint(0,1),
-//                new DataPoint(1,3)
-////            for (int i = 0; i < pHValues.size(); i++)
-////            {
-////                String[] date = pHValues.get(i).getMEASUREMENT_DATE().split("[.,@\\s]");
-////                int datayear = Integer.parseInt(date[0]);
-////                int datamonth = Integer.parseInt(date[1]);
-////                int dataday = Integer.parseInt(date[2]);
-////                new DataPoint(pHValues.get(i).getPH_VALUE(),datayear);
-////            }
-//        });
-//    }
+    protected void loadGraphView(){
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        List<PH> pHValues = dbHelper.getAllValues();
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
+                new DataPoint(0,1),
+                new DataPoint(1,3)
+//            for (int i = 0; i < pHValues.size(); i++)
+//            {
+//                String[] date = pHValues.get(i).getMEASUREMENT_DATE().split("[.,@\\s]");
+//                int datayear = Integer.parseInt(date[0]);
+//                int datamonth = Integer.parseInt(date[1]);
+//                int dataday = Integer.parseInt(date[2]);
+//                new DataPoint(pHValues.get(i).getPH_VALUE(),datayear);
+//            }
+        });
+    }
 
     protected void loadListView() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);

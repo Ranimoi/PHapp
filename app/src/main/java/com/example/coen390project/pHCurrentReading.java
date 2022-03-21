@@ -84,6 +84,7 @@ public class pHCurrentReading extends AppCompatActivity {
         public void onClick(View view) {
             Float ph_value;
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            generateRandomPH();
             try {
                 int leftLimit = 1;
                 int rightLimit = 10;

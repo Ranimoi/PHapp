@@ -75,7 +75,7 @@ public class pHCurrentReading extends AppCompatActivity {
     private Button.OnClickListener onClickreadpHbutton = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            saveButton.setEnabled(true); displaypH(list);
+            saveButton.setEnabled(true); displaypH(list);  generateRandomPH();
         }
     };
 

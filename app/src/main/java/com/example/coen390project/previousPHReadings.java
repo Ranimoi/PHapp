@@ -52,6 +52,7 @@ public class previousPHReadings extends AppCompatActivity {
     protected void loadListView() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 
+
         //get the start date and end date
         if (!dbHelper.getDateRange().isEmpty ()) {
             String startDate = "";
@@ -72,7 +73,7 @@ public class previousPHReadings extends AppCompatActivity {
             Log.d(TAG, "startyear/month/day" + startyear + "/" + startmonth + "/" + startday);
             Log.d(TAG, "endyear/month/day" + endyear + "/" + endmonth + "/" + endday);
 
-
+            dbHelper.getValuesInRange(startDate,endDate);
             List<PH> pHValues = dbHelper.getAllValues();
 
 
@@ -90,12 +91,16 @@ public class previousPHReadings extends AppCompatActivity {
                 Log.d(TAG, "datayear/month/day" + datayear + "/" + datamonth + "/" + dataday);
                 //only output the data in the range selected in the settings activity
                 Log.d(TAG, "startyear" + startyear);
-                if (datayear >= startyear && datayear <= endyear && datamonth >= startmonth && datamonth <= endmonth
-                        && dataday >= startday && dataday <= endday) {
-                    pHListText.add(temp);
-                    numberOfMeasurements.setText(pHValues.size() + " Measurement");
+                if (datayear <= endyear && datamonth <= endmonth && dataday <= endday)
+                    {
+                        if (datayear >= startyear  && datamonth >= startmonth && dataday >= startday)
+                        {
+                            pHListText.add(temp);
+                            numberOfMeasurements.setText(pHListText.size() + " Measurement");
+                        }
                 }
                 else
+                    if (pHListText.size() == 0)
                     numberOfMeasurements.setText("No measurements recorded for this time range");
 
             }
@@ -104,6 +109,23 @@ public class previousPHReadings extends AppCompatActivity {
             pHListView.setAdapter(arrayAdapter);
         }
         //else if no setting time range is selected output them all
+        else
+        {
+            List<PH> pHValues = dbHelper.getAllValues();
+            ArrayList<String> pHListText = new ArrayList<>();
+
+            for (int i = 0; i < pHValues.size(); i++) {
+                String temp = "";
+                temp += pHValues.get(i).getPH_VALUE() + ", " + pHValues.get(i).getMEASUREMENT_DATE();
+                pHListText.add(temp);
+            }
+            numberOfMeasurements.setText(pHValues.size() + " Measurement");
+            ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pHListText);
+            //pHListView = findViewById(R.id.pHListView);
+            pHListView.setAdapter(arrayAdapter);
+
+
+        }
 
 
     }

@@ -212,19 +212,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-   /* public List<PH> getValuesInRange(int M)
+   public List<PH> getValuesInRange(String start_date, String end_date)
     {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(System.currentTimeMillis());
-        Date endTime = c.getTime();
-        c.add(Calendar.YEAR, -M);  // go 'd' day back
-        Date startTime = c.getTime();
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         try
         {
-            cursor = db.query(Config.PH_TABLE_NAME, null, null,null,null, null, null);
+            cursor =db.query(Config.PH_TABLE_NAME, null, Config.COLUMN_MEASUREMENT_DATE  + " BETWEEN ? AND ?", new String[] {
+                     start_date, end_date}, null, null, null, null);
             if(cursor != null)
             {
                 if(cursor.moveToFirst() )
@@ -234,8 +229,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     do {
                         Float value = cursor.getFloat(cursor.getColumnIndex(Config.COLUMN_PH_READING));
                         String date = cursor.getString(cursor.getColumnIndex(Config.COLUMN_MEASUREMENT_DATE));
-
-                        if (date> startTime)
                         pHValues.add(new PH(value, date));
 
                     }while (cursor.moveToNext());
@@ -256,6 +249,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return Collections.emptyList();
 
-    }*/
+    }
+
 
 }

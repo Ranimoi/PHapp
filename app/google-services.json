@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "206849524426",
+    "firebase_url": "https://elec390-37307-default-rtdb.firebaseio.com",
+    "project_id": "elec390-37307",
+    "storage_bucket": "elec390-37307.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206849524426:android:f19da4a109419f74ff2a33",
+        "android_client_info": {
+          "package_name": "com.example.coen390project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206849524426-5lnk1539eo7lamkadea8vadpuvc191j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOsFkUxs0xfqJ04EMj52y5Ih1Fquc8WUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206849524426-5lnk1539eo7lamkadea8vadpuvc191j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

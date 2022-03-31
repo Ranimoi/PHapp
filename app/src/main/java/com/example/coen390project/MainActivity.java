@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected TextView welcometextView;
     protected Button previouspHButton;
     protected Button settingsButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

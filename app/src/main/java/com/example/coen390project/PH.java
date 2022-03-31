@@ -24,7 +24,6 @@ public class PH {
         simpleDate.setTimeZone(TimeZone.getTimeZone("EST"));
         String dateTime = (simpleDate.format(calendar.getTime()).toString());
         setMEASUREMENT_DATE(dateTime);
-
     }
 
 

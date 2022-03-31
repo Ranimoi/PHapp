@@ -91,7 +91,7 @@ public class previousPHReadings extends AppCompatActivity {
             pHListView.setVisibility(View.INVISIBLE);
             numberOfMeasurements.setVisibility(View.INVISIBLE);
             phGraphView.setVisibility(View.VISIBLE);
-            loadGraphView();
+            loadGraphView(phGraphView);
             return true;
 
 
@@ -105,21 +105,20 @@ public class previousPHReadings extends AppCompatActivity {
 }
 
 
-    protected void loadGraphView(){
+    protected void loadGraphView(GraphView graphView ){
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         List<PH> pHValues = dbHelper.getAllValues();
+        for (int i = 0; i < pHValues.size(); i++) {
+            String[] date = pHValues.get(i).getMEASUREMENT_DATE().split("[.,@\\s]");
+        int datayear = Integer.parseInt(date[0]);
+        int datamonth = Integer.parseInt(date[1]);
+        int dataday = Integer.parseInt(date[2]);
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
-                new DataPoint(0,1),
-                new DataPoint(1,3)
-//            for (int i = 0; i < pHValues.size(); i++)
-//            {
-//                String[] date = pHValues.get(i).getMEASUREMENT_DATE().split("[.,@\\s]");
-//                int datayear = Integer.parseInt(date[0]);
-//                int datamonth = Integer.parseInt(date[1]);
-//                int dataday = Integer.parseInt(date[2]);
-//                new DataPoint(pHValues.get(i).getPH_VALUE(),datayear);
-//            }
+            new DataPoint(datayear, pHValues.get(i).getPH_VALUE())
         });
+        graphView.addSeries(series);
+        }
     }
 
     protected void loadListView() {

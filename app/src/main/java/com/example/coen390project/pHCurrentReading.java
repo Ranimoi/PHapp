@@ -88,10 +88,6 @@ public class pHCurrentReading extends AppCompatActivity {
 
                         }
 
-
-
-
-
                 }
 
                 @Override
@@ -110,7 +106,6 @@ public class pHCurrentReading extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        generateRandomPH();
 
     }
 
@@ -118,7 +113,7 @@ public class pHCurrentReading extends AppCompatActivity {
     private Button.OnClickListener onClickreadpHbutton = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            saveButton.setEnabled(true); //displaypH(list);  generateRandomPH();
+            saveButton.setEnabled(true);
 
             //get the data from the firebase
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("arduino");
@@ -128,17 +123,11 @@ public class pHCurrentReading extends AppCompatActivity {
                     for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                         dateandph data = snapshot.getValue(dateandph.class);
                         Log.d(TAG, "getph" + (data.getPH()));
-                        //DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
-//                        dbHelper.insertpH(new PH((Float) datasnapshot.getValue()));
                         Log.d(TAG, "getDate" + (data.getDate()));
                         displaypH(data.getPH());
 
 
                     }
-
-
-
-
 
                 }
 
@@ -150,16 +139,46 @@ public class pHCurrentReading extends AppCompatActivity {
         }
     };
 
+
     private Button.OnClickListener onClicksavebutton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Float ph_value;
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            generateRandomPH();
+
             try {
-                int leftLimit = 1;
-                int rightLimit = 10;
-                ph_value = leftLimit + (Float) (new Random().nextFloat() * (rightLimit - leftLimit));
+//
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("arduino");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                        for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                            dateandph data = snapshot.getValue(dateandph.class);
+                            Log.d(TAG, "getph" + (data.getPH()));
+                            DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
+                            Float ph_value = data.getPH();
+                            Log.d(TAG, "getDate" + (data.getDate()));
+
+                            if(!(ph_value < 0 || ph_value >14)) {
+                                dbHelper.insertpH(new PH(ph_value));
+                                //toast successful save output a toast message
+                                Toast.makeText(pHCurrentReading.this, "pH saved", Toast.LENGTH_SHORT).show();
+                                saveButton.setEnabled(false);
+                            }
+                            else
+                            {
+                                Toast.makeText(pHCurrentReading.this, "Operation Failed, pH value is not within range" ,Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
             catch (Exception e)
             {
@@ -170,31 +189,10 @@ public class pHCurrentReading extends AppCompatActivity {
             String date = sdf.format(new Date());
 
             DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
-            if(!(ph_value < 0 || ph_value >14)) {
-                dbHelper.insertpH(new PH(ph_value));
-                //toast successful save output a toast message
-                Toast.makeText(pHCurrentReading.this, "pH saved", Toast.LENGTH_SHORT).show();
-                saveButton.setEnabled(false);
-            }
-            else
-            {
-                Toast.makeText(pHCurrentReading.this, "Operation Failed, pH value is not within range" ,Toast.LENGTH_LONG).show();
-            }
+
 
         }
     };
-
-
-    protected List<Float> generateRandomPH() {
-
-        Float min = 5.0f, max = 7.0f;
-        Random rnd = new Random();
-        for (int i = 0; i < 10; i++) {
-            list.add(rnd.nextFloat()*((max - min + 1) + min));
-        }
-
-        return list;
-    }
 
 
     protected void displaypH(Float ph_value) {

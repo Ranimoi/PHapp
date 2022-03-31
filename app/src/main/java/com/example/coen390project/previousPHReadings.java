@@ -208,7 +208,3 @@ public class previousPHReadings extends AppCompatActivity {
         }
 
     }
-
-
-
-}

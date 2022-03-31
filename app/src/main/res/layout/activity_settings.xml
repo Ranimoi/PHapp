@@ -85,4 +85,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endDatetextView" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="32dp"
+        android:text="Enter A Range of Dates"
+        app:layout_constraintBottom_toTopOf="@+id/startDatebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Settingstoolbar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

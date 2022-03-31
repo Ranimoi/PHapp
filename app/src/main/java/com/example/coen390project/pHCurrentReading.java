@@ -2,6 +2,7 @@ package com.example.coen390project;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,10 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import  com.example.coen390project.DatabaseHelper;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.text.SimpleDateFormat;
 
@@ -32,6 +40,7 @@ public class pHCurrentReading extends AppCompatActivity {
     protected TextView informationTextView;
     protected TextView pHTextView;
     protected Button saveButton;
+    private static final String TAG = "currentReading";
 
     //list to store the values of the
     List<Float> list = new ArrayList<Float>();
@@ -60,8 +69,42 @@ public class pHCurrentReading extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle("pH current Reading");
 
+    //get the data from firebase
 
-    }
+
+            //get the data from the firebase
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("arduino");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                    for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                        dateandph data = snapshot.getValue(dateandph.class);
+                        Log.d(TAG, "getph" + (data.getPH()));
+                        //DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
+//                        dbHelper.insertpH(new PH((Float) datasnapshot.getValue()));
+                        Log.d(TAG, "getDate" + (data.getDate()));
+
+
+
+                        }
+
+
+
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+
+
+
 
     //when the activity starts
     @Override
@@ -75,7 +118,35 @@ public class pHCurrentReading extends AppCompatActivity {
     private Button.OnClickListener onClickreadpHbutton = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            saveButton.setEnabled(true); displaypH(list);
+            saveButton.setEnabled(true); //displaypH(list);  generateRandomPH();
+
+            //get the data from the firebase
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("arduino");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                    for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                        dateandph data = snapshot.getValue(dateandph.class);
+                        Log.d(TAG, "getph" + (data.getPH()));
+                        //DatabaseHelper dbHelper = new DatabaseHelper(pHCurrentReading.this);
+//                        dbHelper.insertpH(new PH((Float) datasnapshot.getValue()));
+                        Log.d(TAG, "getDate" + (data.getDate()));
+                        displaypH(data.getPH());
+
+
+                    }
+
+
+
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     };
 
@@ -126,10 +197,10 @@ public class pHCurrentReading extends AppCompatActivity {
     }
 
 
-    protected void displaypH(List<Float> list) {
-        for (int i = 0; i < list.size(); i++) {
+    protected void displaypH(Float ph_value) {
+        //for (int i = 0; i < list.size(); i++) {
 
-            Float ph_value = list.get(i);
+           // Float ph_value = list.get(i);
             //set the color of the circle ring based on the pH
             if (ph_value<=1 &&  0<=ph_value) {
                 pHtextView.getBackground().setTint(getResources().getColor(android.R.color.holo_red_dark));
@@ -173,7 +244,7 @@ public class pHCurrentReading extends AppCompatActivity {
                 pHTextView.setText("Basic pH");
             }
 
-            pHtextView.setText(String.valueOf(list.get(i)));
+            pHtextView.setText(String.valueOf(ph_value));
 
             Bundle bundle = getIntent().getExtras();
 
@@ -200,7 +271,7 @@ public class pHCurrentReading extends AppCompatActivity {
                     //chemical experiment/other
                     informationTextView.setText("Depending on the liquid measured the pH can be safe or not safe. Please look up online the normal pH for safe measure");
 
-            }
+
 
 
 

@@ -211,4 +211,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
 
     }
+
+   public List<PH> getValuesInRange(String start_date, String end_date)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try
+        {
+            cursor =db.query(Config.PH_TABLE_NAME, null, Config.COLUMN_MEASUREMENT_DATE  + " BETWEEN ? AND ?", new String[] {
+                     start_date, end_date}, null, null, null, null);
+            if(cursor != null)
+            {
+                if(cursor.moveToFirst() )
+                {
+                    List<PH> pHValues = new ArrayList<>();
+                    Log.d(TAG,"Column" +cursor.getColumnIndex(Config.COLUMN_PH_READING));
+                    do {
+                        Float value = cursor.getFloat(cursor.getColumnIndex(Config.COLUMN_PH_READING));
+                        String date = cursor.getString(cursor.getColumnIndex(Config.COLUMN_MEASUREMENT_DATE));
+                        pHValues.add(new PH(value, date));
+
+                    }while (cursor.moveToNext());
+                    return pHValues;
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            Log.d(TAG,"EXCEPTION: " + e);
+            Toast.makeText(context, "Operation Failed!: " + e, Toast.LENGTH_LONG).show();
+        }
+        finally {
+            if(cursor != null)
+                cursor.close();
+
+            db.close();
+        }
+        return Collections.emptyList();
+
+    }
+
+
 }

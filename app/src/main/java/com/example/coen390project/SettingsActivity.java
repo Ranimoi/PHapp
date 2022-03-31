@@ -103,6 +103,20 @@ public class SettingsActivity extends AppCompatActivity implements DatePickerDia
                     dbHelper.insertDateRange(new DateRange(startDate,endDate));
 
                 }
+                else if ((enddateDay-startdateDay)<0&&(enddatemonth-startdatemonth)>=0&&(enddateYear-startdateYear)>=0)
+                {
+                    //toast successful save output a toast message
+                    Toast.makeText(SettingsActivity.this, "Dates saved", Toast.LENGTH_SHORT).show();
+                    savebutton.setEnabled(false);
+                    //send the dates to the databasehelper!!!
+                    //need a start date and end date column
+                    //also a function that converts the dates to integers to select the range of dates to display
+                    DatabaseHelper dbHelper = new DatabaseHelper(SettingsActivity.this);
+                    String startDate= startDateTextView.getText().toString();
+                    String endDate= endDateTextView.getText().toString();
+                    dbHelper.insertDateRange(new DateRange(startDate,endDate));
+
+                }
                 else
                 {
                     //toast successful save output a toast message
